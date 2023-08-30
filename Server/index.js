@@ -8,6 +8,7 @@ const multer = require('multer');
 const path = require('path');
 const UserModel = require('./models/UserModel')
 const app = express()
+require("dotenv").config();
 const PostModel = require('./models/PostModel')
 const localStorage = require("node-localstorage");
 app.use(express.json())
@@ -18,7 +19,7 @@ app.use(cors({
 }))
 app.use(cookieParser())
 app.use(express.static('public'))
-mongoose.connect('mongodb+srv://nitinramjas8742:Nitin123@cluster0.ekgu9mv.mongodb.net/sample?retryWrites=true&w=majority',
+mongoose.connect(process.env.MONGO_URL,
 {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -33,12 +34,12 @@ db.once("open", function (err) {
   console.log("Connected successfully");
 });
 const verifyUser = (req,res,next) => {
-   const token = req.cookies.token;
+   const token = req.header("token");
    if(!token)
    return res.json("token missing")
   else
   {
-    jwt.verify(token,"jwt-secret-key",(err,decoded)=>{
+    jwt.verify(token,process.env.JWT_SECRET,(err,decoded)=>{
          if(err)
          {
            return res.json("The token is wrong")
@@ -74,7 +75,7 @@ app.post('/login',(req,res) =>{
         if(response)
         {
              //var localStorage = new localStorage('./scratch');
-             const token = jwt.sign({email : user.email,username: user.username},"jwt-secret-key",{expiresIn: '1d'})
+             const token = jwt.sign({email : user.email,username: user.username},process.env.JWT_SECRET,{expiresIn: '1d'})
              return res.status(200).json({status:"Success",token:token});
             }
         else{
@@ -98,9 +99,10 @@ const upload = multer({
 })
 app.post('/create',verifyUser,upload.single('file'),(req,res) =>{
   
-   PostModel.create({title: req.body.title,
+   PostModel.create({
+    title: req.body.title,
     description: req.body.description,
-    title: req.file.filename
+    file: req.file.filename
   })
   .then(
     result => res.json("Success")

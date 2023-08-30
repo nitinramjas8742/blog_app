@@ -20,7 +20,7 @@ function Home() {
       {
       posts.map(post => (
         <Link to={`/post/${post._id}`} className='post'>
-          <img src= {`http://localhost:3001/Images/${post.file}`} alt=""/>
+          <img src= {`http://localhost:3001/Images/${post.title}`} alt=""/>
           <div className='post_text'>
             <h2>{post.title}</h2>
             <p>{post.description}</p>

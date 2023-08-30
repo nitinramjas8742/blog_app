@@ -17,7 +17,10 @@ function App() {
   axios.defaults.withCredentials = true;
   useEffect(()=>{
     axios.get('http://127.0.0.1:3001/',{
-      token:localStorage.getItem("token")
+      headers:{
+        token:localStorage.getItem("token")
+      },
+      
     })
     .then(user =>{
       setUser(user.data)
