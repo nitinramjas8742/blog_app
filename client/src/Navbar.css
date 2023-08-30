@@ -1,0 +1,40 @@
+/* Reset some default styles for consistency */
+body, h3, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles for the navbar header */
+.navbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #3498db, #e74c3c);
+  color: #fff;
+  padding: 10px 20px;
+}
+
+/* Styles for the logo */
+.logo h3 {
+  font-size: 24px;
+}
+
+/* Styles for navigation links */
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+/* Style for the user section */
+.user-section h5 {
+  font-size: 14px;
+}
+.link{
+  color: white;
+  text-decoration: none;
+}
+
+
+
