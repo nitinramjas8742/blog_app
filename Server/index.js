@@ -13,10 +13,13 @@ const PostModel = require('./models/PostModel')
 const localStorage = require("node-localstorage");
 app.use(express.json())
 app.use(cors({
-    origin: ["http://127.0.0.1:5173"],
-    methods: ["GET","POST","PUT","DELETE"],
-    credentials : true
+  origin:['http://localhost:5173'],
+  methods:["GET","POST","PUT","DELETE"],
+  credentials:true
 }))
+
+
+
 app.use(cookieParser())
 app.use(express.static('public'))
 mongoose.connect(process.env.MONGO_URL,
@@ -48,6 +51,7 @@ const verifyUser = (req,res,next) => {
          {
           req.email = decoded.email;
           req.username = decoded.username;
+          req.id = decoded.id;
           next()
          }
     })
@@ -75,7 +79,7 @@ app.post('/login',(req,res) =>{
         if(response)
         {
              //var localStorage = new localStorage('./scratch');
-             const token = jwt.sign({email : user.email,username: user.username},process.env.JWT_SECRET,{expiresIn: '1d'})
+             const token = jwt.sign({email : user.email,username: user.username,id : user._id},process.env.JWT_SECRET,{expiresIn: '1d'})
              return res.status(200).json({status:"Success",token:token});
             }
         else{
@@ -102,17 +106,23 @@ app.post('/create',verifyUser,upload.single('file'),(req,res) =>{
    PostModel.create({
     title: req.body.title,
     description: req.body.description,
-    file: req.file.filename
+    file: req.file.filename,
+    user_id: req.id
   })
   .then(
     result => res.json("Success")
   )
   .catch(err => res.json(err))
 })
-app.get('/getposts',(req,res) =>{
-   PostModel.find()
+app.get('/getposts',verifyUser,(req,res) =>{
+   PostModel.find({user_id:req.id})
    .then(posts => res.json(posts))
    .catch(err => res.json(err))
+})
+app.get('/getallposts',(req,res) =>{
+  PostModel.find()
+  .then(posts => res.json(posts))
+  .catch(err => res.json(err))
 })
 app.get('/getpostbyid/:id',(req,res) => {
     const id = req.params.id
@@ -124,6 +134,14 @@ app.get('/logout',(req,res) =>{
       res.clearCookie('token')
       return res.json("Success")
 })
-app.listen(3001, () => {
+app.post('/editPost/:id',verifyUser,(req,res) => {
+    const id = req.params.id
+    PostModel.findOneAndUpdate({_id : id},{title : req.body.title , description : req.body.description})
+    
+})
+app.listen(3000, (err) => {
+  if(err){
+    console.log(err);
+  }
   console.log("Server is running");
 });

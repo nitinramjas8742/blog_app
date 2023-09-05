@@ -2,6 +2,11 @@ import React, { useState } from 'react'
 import './CreatePost.css'
 import axios from 'axios'
 function CreatePost() {
+    if(!localStorage.getItem('token'))
+    {
+      window.location.href='/'
+      return
+    }
     const [title,setTitle] = useState()
     const [description,setDescription] = useState()
     const [file,setFile] = useState()
@@ -11,7 +16,7 @@ function CreatePost() {
        formData.append('title',title)
        formData.append('description',description)
        formData.append('file',file)
-       axios.post('http://localhost:3001/create',formData,{
+       axios.post('http://localhost:3000/create',formData,{
         headers:{
         'token':localStorage.getItem("token"),
         'Content-type':'multipart/form-data'

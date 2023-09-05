@@ -10,13 +10,14 @@ import axios from 'axios';
 import CreatePost from './CreatePost';
 import EditPost from './EditPost';
 import Post from './Post';
-
+import Logout from './Logout';
+import MyPost from './MyPost';
 export const userContext = createContext()
 function App() {
   const [user,setUser] = useState({});
   axios.defaults.withCredentials = true;
   useEffect(()=>{
-    axios.get('http://127.0.0.1:3001/',{
+    axios.get('http://127.0.0.1:3000/',{
       headers:{
         token:localStorage.getItem("token")
       },
@@ -37,7 +38,9 @@ function App() {
         <Route path='/' element = {<Home/>}></Route>
         <Route path='/create' element = {<CreatePost/>}></Route>
         <Route path='/post/:id' element = {<Post/>}></Route>
-        <Route path='/editpost/:id' element = {<EditPost/>}></Route> 
+        <Route path='/editpost/:id' element = {<EditPost/>}></Route>
+        <Route path='/logout' element = {<Logout/>}></Route>
+        <Route path='/mypost' element = {<MyPost/>}></Route>
        </Routes>
       </BrowserRouter>
       </userContext.Provider>

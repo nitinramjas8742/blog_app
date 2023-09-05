@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const PostSchema  = new mongoose.Schema({
     title : String,
     description : String,
-    file : String
+    file : String,
+    user_id: mongoose.Schema.Types.ObjectId
 })
 const PostModel = mongoose.model('posts',PostSchema)
 module.exports = PostModel;

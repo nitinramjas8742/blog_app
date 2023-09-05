@@ -7,12 +7,7 @@ function Navbar() {
     const user = useContext(userContext)
     const navigate = useNavigate()
     const handleLogout = () => {
-        axios.get('http://127.0.0.1:3001/logout')
-        .then(res=>{
-               if(res.data === "Success")
-               navigate(0) 
-        })
-        .catch(err => console.log(err))
+        window.location.href='/logout'
     }
   return (
      <>
@@ -27,7 +22,14 @@ function Navbar() {
                 <Link to = "/create" class="link">Create</Link>
                 : <></>
             }
-            
+            {
+            user.username ?
+            <div>
+                <Link to = "/mypost" class="link">MyPost</Link>
+            </div>
+            :
+            <></>
+            }
             <a class="link" href="/about">About Us</a>
         </div>
         {

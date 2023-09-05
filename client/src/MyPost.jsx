@@ -2,12 +2,16 @@ import React, { useEffect,useState} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 function Home() {
+    if(!localStorage.getItem('token'))
+    {
+        window.location.href='/';
+        return
+    }
   const [posts,setPosts] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:3000/getallposts',{
+    axios.get('http://localhost:3000/getposts',{
       headers:{
       'token':localStorage.getItem("token"),
-      'Content-type':'multipart/form-data'
       }
     })
     .then(posts => {
