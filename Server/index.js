@@ -143,7 +143,7 @@ app.post('/editPost/:id', verifyUser, (req, res) => {
   PostModel.findOneAndUpdate({ _id: id }, { title: req.body.title, description: req.body.description })
 
 })
-app.listen(3000, (err) => {
+app.listen(process.env.PORT||3000, (err) => {
   if (err) {
     console.log(err);
   }
