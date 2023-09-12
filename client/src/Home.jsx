@@ -1,5 +1,6 @@
 import React, { useEffect,useState} from 'react'
 import axios from 'axios'
+import './Home.css'
 import { Link } from 'react-router-dom'
 function Home() {
   const [posts,setPosts] = useState([])
@@ -17,18 +18,19 @@ function Home() {
   },[])
   return (
     <div className='posts_container'>
-      {
-      posts.map(post => (
-        <Link to={`/post/${post._id}`} className='post'>
-          <img src= {`http://localhost:3000/Images/${post.file}`} alt=""/>
-          <div className='post_text'>
-            <h2>{post.title}</h2>
-            <p>{post.description}</p>
-          </div>
-          </Link>
-      ))
-     }
-    </div>
+  {posts.map(post => (
+    <Link to={`/post/${post._id}`} className='post_card' key={post._id}>
+      <div className='card'>
+        <img src={`http://localhost:3000/Images/${post.file}`} alt="" className='card_image' />
+        <div className='card_content'>
+          <h2 className='card_title'>{post.title}</h2>
+          <p className='card_description'>{post.description}</p>
+        </div>
+      </div>
+    </Link>
+  ))}
+</div>
+
   )
 }
 
