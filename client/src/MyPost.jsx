@@ -1,8 +1,8 @@
 import React, { useEffect,useState} from 'react'
 import axios from 'axios'
-
+import './Mypost.css'
 import { Link } from 'react-router-dom'
-function Home() {
+function MyPost() {
     if(!localStorage.getItem('token'))
     {
         window.location.href='/';
@@ -23,7 +23,7 @@ function Home() {
   return (
     <div className='posts_container'>
   {posts.map(post => (
-    <Link to={`/post/${post._id}`} className='post' key={post._id}>
+    <Link to={`/ed_post/${post._id}`} className='post_card' key={post._id}>
       <div className='card'>
         <img src={`http://localhost:3000/Images/${post.file}`} alt="" className='card_image' />
         <div className='card_text'>
@@ -38,4 +38,4 @@ function Home() {
   )
 }
 
-export default Home
+export default MyPost

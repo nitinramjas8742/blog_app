@@ -1,0 +1,54 @@
+/* Apply basic styling to the entire article */
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  /* Style headings and paragraphs */
+  h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #009688;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-top: 20px;
+    color: #009688;
+  }
+  
+  p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  /* Style tips (strong elements) */
+  strong {
+    color: #009688;
+  }
+  
+  /* Add styling for the hidden gems section */
+  .gem {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Add styling for the conclusion section */
+  h2:last-child {
+    margin-bottom: 20px;
+  }
+  
+  /* Add styling for links */
+  
+  a:hover {
+    color: #007669;
+    border-bottom: 2px solid #007669;
+  }
+  

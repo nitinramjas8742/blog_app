@@ -1,9 +1,9 @@
 import axios from 'axios'
 import React from 'react'
-import './Post.css'
+import './Edit_del_mypost.css'
 import {useParams,Link} from 'react-router-dom';
 import { useState,useEffect } from 'react';
-function Post() {
+function Edit_del_mypost() {
     const {id} = useParams()
     const [post,setPost] = useState({})
     useEffect(() => {
@@ -43,11 +43,12 @@ function Post() {
     <img src={`http://localhost:3000/Images/${post.file}`} alt="" className='post-card-image' />
     <h2 className='post-card-title'>{post.title}</h2>
     <p className='post-card-description'>{post.description}</p>
-    
+    <Link to={`/editpost/${post._id}`} className='post-card-link'>Edit</Link>
+    <button className='post-card-button' onClick={handledelete}>Delete</button>
   </div>
 </div>
 
   )
 }
 
-export default Post
+export default Edit_del_mypost

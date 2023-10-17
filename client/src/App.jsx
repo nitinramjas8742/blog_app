@@ -12,6 +12,8 @@ import EditPost from './EditPost';
 import Post from './Post';
 import Logout from './Logout';
 import MyPost from './MyPost';
+import About from './About';
+import Edit_del_mypost from './Edit_del_mypost';
 export const userContext = createContext()
 function App() {
   const [user,setUser] = useState({});
@@ -34,10 +36,12 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path='/register' element={<Register/>}></Route>
+        <Route path='/aboutus' element={<About/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/' element = {<Home/>}></Route>
         <Route path='/create' element = {<CreatePost/>}></Route>
         <Route path='/post/:id' element = {<Post/>}></Route>
+        <Route path='/ed_post/:id' element = {<Edit_del_mypost/>}></Route>
         <Route path='/editpost/:id' element = {<EditPost/>}></Route>
         <Route path='/logout' element = {<Logout/>}></Route>
         <Route path='/mypost' element = {<MyPost/>}></Route>

@@ -30,7 +30,7 @@ function Navbar() {
             :
             <></>
             }
-            <a class="link" href="/about">About Us</a>
+            <Link class="link" to="/aboutus">About Us</Link>
         </div>
         {
             user.username ?
