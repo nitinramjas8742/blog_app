@@ -35,7 +35,9 @@ function Register() {
       <button className="signup-button">Sign up</button>
     </form>
     <p className="login-message"><b>If you already have an account?</b></p>
-    <button className="login-button"><Link to='/login' className='lk'>Login</Link></button>
+    <Link to='/login' className='lk'>
+    <button className="login-button">Login</button>
+    </Link>
   </div>
   )
 }
