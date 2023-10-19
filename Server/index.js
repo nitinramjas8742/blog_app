@@ -13,7 +13,7 @@ const PostModel = require('./models/PostModel')
 const localStorage = require("node-localstorage");
 app.use(express.json())
 app.use(cors({
-  origin: ['http://localhost:5173'],
+  origin: ['http://localhost:5173','https://nitin-blog-app.netlify.app/'],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }))
