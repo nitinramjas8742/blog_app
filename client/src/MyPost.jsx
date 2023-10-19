@@ -25,7 +25,7 @@ function MyPost() {
   {posts.map(post => (
     <Link to={`/ed_post/${post._id}`} className='post_card' key={post._id}>
       <div className='card'>
-        <img src={`http://localhost:3000/Images/${post.file}`} alt="" className='card_image' />
+        <img src={`${import.meta.env.VITE_API_URL}/Images/${post.file}`} alt="" className='card_image' />
         <div className='card_text'>
           <h2>{post.title}</h2>
           <p>{post.description}</p>
