@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 function Home() {
   const [posts,setPosts] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:3000/getallposts',{
+    axios.get(`${import.meta.env.VITE_API_URL}/getallposts`,{
       headers:{
       'token':localStorage.getItem("token"),
       'Content-type':'multipart/form-data'
@@ -21,7 +21,7 @@ function Home() {
   {posts.map(post => (
     <Link to={`/post/${post._id}`} className='post_card' key={post._id}>
       <div className='card'>
-        <img src={`http://localhost:3000/Images/${post.file}`} alt="" className='card_image' />
+        <img src={`${import.meta.env.VITE_API_URL}/Images/${post.file}`} alt="" className='card_image' />
         <div className='card_content'>
           <h2 className='card_title'>{post.title}</h2>
           <p className='card_description'>{post.description}</p>

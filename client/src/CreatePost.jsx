@@ -16,7 +16,7 @@ function CreatePost() {
        formData.append('title',title)
        formData.append('description',description)
        formData.append('file',file)
-       axios.post('http://localhost:3000/create',formData,{
+       axios.post(`${import.meta.env.VITE_API_URL}/create`,formData,{
         headers:{
         'token':localStorage.getItem("token"),
         'Content-type':'multipart/form-data'

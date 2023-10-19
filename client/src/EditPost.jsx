@@ -21,7 +21,7 @@ function EditPost() {
     const formData = new FormData()
     formData.append('title', title)
     formData.append('description', description)
-    axios.post(`http://localhost:3000/editPost/${id}`, formData, {
+    axios.post(`${import.meta.env.VITE_API_URL}/editPost/${id}`, formData, {
       headers: {
         'token': localStorage.getItem("token"),
       },
@@ -35,7 +35,7 @@ function EditPost() {
   }
   useEffect(() => {
     
-    axios.get(`http://localhost:3000/getpostbyid/${id}`,{
+    axios.get(`${import.meta.env.VITE_API_URL}/getpostbyid/${id}`,{
           headers:{
           'token':localStorage.getItem("token"),
            }

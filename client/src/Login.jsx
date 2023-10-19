@@ -13,7 +13,7 @@ function Login() {
   const navigate = useNavigate()
   const handleSubmit = (e) =>{
     e.preventDefault()
-    axios.post('http://localhost:3000/login',{email,password})
+    axios.post(`${import.meta.env.VITE_API_URL}/login`,{email,password})
     .then(res => {
       if(res.data.status === "Success")
       {

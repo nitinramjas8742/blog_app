@@ -10,7 +10,7 @@ function MyPost() {
     }
   const [posts,setPosts] = useState([])
   useEffect(() => {
-    axios.get('http://localhost:3000/getposts',{
+    axios.get(`${import.meta.env.VITE_API_URL}/getposts`,{
       headers:{
       'token':localStorage.getItem("token"),
       }

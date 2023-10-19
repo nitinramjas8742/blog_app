@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 import './Navbar.css'
 import { userContext } from './App'
-import axios from 'axios'
 function Navbar() {
     const user = useContext(userContext)
     const navigate = useNavigate()

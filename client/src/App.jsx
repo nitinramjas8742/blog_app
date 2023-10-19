@@ -19,7 +19,7 @@ function App() {
   const [user,setUser] = useState({});
   axios.defaults.withCredentials = true;
   useEffect(()=>{
-    axios.get('http://127.0.0.1:3000/',{
+    axios.get(`${import.meta.env.VITE_API_URL}/`,{
       headers:{
         token:localStorage.getItem("token")
       },

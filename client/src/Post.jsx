@@ -7,7 +7,7 @@ function Post() {
     const {id} = useParams()
     const [post,setPost] = useState({})
     useEffect(() => {
-         axios.get(`http://localhost:3000/getpostbyid/${id}`,{
+         axios.get(`${import.meta.env.VITE_API_URL}/getpostbyid/${id}`,{
           headers:{
           'token':localStorage.getItem("token"),
            }
@@ -23,7 +23,7 @@ function Post() {
          .catch(err => console.log(err))
         },[]) 
       const handledelete = () =>{
-         axios.delete(`http://localhost:3000/delete/${id}`,{
+         axios.delete(`${import.meta.env.VITE_API_URL}/delete/${id}`,{
           headers:{
             'token':localStorage.getItem("token"),
              }
@@ -40,7 +40,7 @@ function Post() {
   return (
     <div className='post-card'>
   <div className='post-card-content'>
-    <img src={`http://localhost:3000/Images/${post.file}`} alt="" className='post-card-image' />
+    <img src={`${import.meta.env.VITE_API_URL}/Images/${post.file}`} alt="" className='post-card-image' />
     <h2 className='post-card-title'>{post.title}</h2>
     <p className='post-card-description'>{post.description}</p>
     
